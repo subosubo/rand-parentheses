@@ -1,0 +1,87 @@
+#http,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+#https,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+#http,nmap -Pn -sV -p$port --script http-apache-server-status $ip >  $dir$ip-p$port_HTTPApacheServerStatus.log 
+#https,nmap -Pn -sV -p$port --script http-apache-server-status $ip >  $dir$ip-p$port_HTTPApacheServerStatus.log 
+http,nmap -Pn -sV -p$port --script http-headers $ip >  $dir$ip-p$port_HTTPHEADERS.log 
+#https,nmap -Pn -sV -p$port --script http-headers $ip >  $dir$ip-p$port_HTTPHEADERS.log 
+#http,nmap -Pn -sV -p$port --script http-security-headers $ip >  $dir$ip-p$port_HTTPSECURITYHEADERS.log 
+https,nmap -Pn -sV -p$port --script http-security-headers $ip >  $dir$ip-p$port_HTTPSECURITYHEADERS.log 
+http,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+https,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+#http,davtest -url $service://$ip:$port/ > $dir$ip-p$port_DavTest.log 
+#https,davtest -url $service://$ip:$port/ > $dir$ip-p$port_DavTest.log 
+http,curl -v -L $service://$ip:$port/ > $dir$ip-p$port_HttpGet.log 
+https,curl -v -L --insecure $service://$ip:$port/ > $dir$ip-p$port_HttpGet.log 
+http,curl -v -L -X OPTIONS $service://$ip:$port/ > $dir$ip-p$port_HttpOptions.log 
+https,curl -v -L --insecure -X OPTIONS $service://$ip:$port/ > $dir$ip-p$port_HttpOptions.log 
+http,curl -v -L -X TRACE $service://$ip:$port/ > $dir$ip-p$port_HttpTrace.log 
+https,curl -v -L --insecure -X TRACE $service://$ip:$port/ > $dir$ip-p$port_HttpTrace.log 
+#http,nikto -h $service://$ip:$port/ > $dir$ip-p$port_Nikto.log 
+#https,nikto -h $service://$ip:$port/ > $dir$ip-p$port_Nikto.log 
+#https,sslscan --no-colour --no-failed $ip:$port > $dir$ip-p$port_SslScan.log 
+#https,sslscan --no-colour --no-fallback --no-renegotiation --no-compression --no-heartbleed $ip:$port > $dir$ip-p$port_SslScan.log 
+#https,nmap -Pn --script=ssl-cert.nse -p$port $ip > $dir$ip-p$port_NmapSslCert.log 
+#https,nmap -Pn --script=ssl-ccs-injection.nse -p$port $ip > $dir$ip-p$port_NmapSslCcs.log 
+#https,openssl s_client -connect $ip:$port > $dir$ip-p$port_OpenSslClient.log 
+#https,nmap -Pn --script=ssl-enum-ciphers -p$port $ip > $dir$ip-p$port_NmapSslEnumCiphers.log 
+#ssl,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+#ssl,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+ssl,openssl s_client -connect $ip:$port > $dir$ip-p$port_OpenSslClient.log  
+ssl,nmap -Pn --script=ssl-enum-ciphers -p$port $ip > $dir$ip-p$port_NmapSslEnumCiphers.log 
+#ssl,nmap -Pn --script=ssl-ccs-injection -p$port $ip > $dir$ip-p$port_NmapSslCcsInject.log 
+ssl,sslscan --no-colour --no-fallback --no-renegotiation --no-compression --no-heartbleed $ip:$port > $dir$ip-p$port_SslScan.log 
+ssl,nmap -Pn --script=ssl-cert -p$port $ip > $dir$ip-p$port_NmapSslCert.log 
+#ssl,sslscan --no-colour --no-failed $ip:$port > $dir$ip-p$port_SslScan.log 
+rdp,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+rdp,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+rdp,nmap -Pn --script=rdp-enum-encryption.nse -p$port $ip > $dir$ip-p$port_NmapRdpEnumEncryption.log 
+rdp,nmap -Pn --script=ssl-enum-ciphers -p$port $ip > $dir$ip-p$port_NmapSslEnumCiphers.log 
+rdp,sslscan --no-colour --no-failed $ip:$port > $dir$ip-p$port_SslScan.log 
+rdp,nmap -Pn --script=rdp-vuln-ms12-020.nse -p$port $ip > $dir$ip-p$port_NmapRdpms12-020.log 
+rdp,perl /usr/share/sparta/scripts/rdp-sec-check.pl $ip:$port > $dir$ip-p$port_RdpSecCheck.log 
+rdp,openssl s_client -connect $ip:$port > $dir$ip-p$port_OpenSslClient.log 
+ssh,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+ssh,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+ssh,nmap -Pn --script=ssh2-enum-algos.nse -p$port $ip > $dir$ip-p$port_NmapSshEnumEncryption.log 
+ssh,nmap -Pn --script=sshv1.nse -p$port $ip > $dir$ip-p$port_NmapSshVersion.log 
+snmp,nmap -Pn -A -sU -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+snmp,nmap -Pn -A -sU --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+snmp,nmap -Pn -sU --script=snmp-brute.nse -p$port $ip > $dir$ip-p$port_NmapSnmpBrute.log 
+snmp,nmap -Pn -sU --script=snmp-info.nse -p$port $ip > $dir$ip-p$port_NmapSnmpInfo.log 
+smb,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+smb,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+smb,nmap -Pn --script=smb2-security-mode -p$port $ip > $dir$ip-p$port_NmapSmbSecurity2.log 
+smb,nmap -Pn --script=smb-security-mode -p$port $ip > $dir$ip-p$port_NmapSmbSecurity1.log 
+smb,nmap -Pn --script=smb-vuln-ms08-067.nse -p$port $ip > $dir$ip-p$port_NmapSmbms08-067.log 
+smb,nmap -Pn --script=smb-vuln-ms17-010.nse -p$port $ip > $dir$ip-p$port_NmapSmbms17-010.log 
+smb,nmap -Pn --script=smb-protocols.nse -p$port $ip > $dir$ip-p$port_NmapSmbProtocols.log 
+smb,nmap -Pn --script=smb-enum-shares.nse -p$port $ip > $dir$ip-p$port_NmapSmbShares.log 
+smtp,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+smtp,nmap -Pn -A --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log 
+smtp,perl ssl-cipher-suite-enum.pl --smtp $ip:$port > $dir$ip-p$port_SslCipherSuiteEnum.log 
+smtp,nmap -Pn --script=smtp-brute.nse -p$port $ip > $dir$ip-p$port_NmapSmtpBrute.log 
+smtp,nmap -Pn --script=smtp-open-relay -p$port $ip > $dir$ip-p$port_NmapSmtpOpenRelay.log 
+dns,nmap -Pn -sU --script=dns-service-discovery -p$port $ip > $dir$ip-p$port_NmapDnsServiceDiscovery.log 
+dnscache,nmap -Pn -sU -A --script=dns-cache-snoop.nse -p$port $ip > $dir$ip-p$port_NmapDnsCache.log 
+dnsampddos,nmap -Pn -sU -A --script=dns-recursion -p$port $ip > $dir$ip-p$port_NmapDnsRecursion.log 
+sslpoodle,nmap -Pn --script=ssl-poodle -p$port $ip > $dir$ip-p$port_NmapSslPoodle.log 
+php,nmap -Pn --script=http-php-version -p$port $ip > $dir$ip-p$port_NmapHttpPhpVersion.log 
+robot,sslyze --regular $ip:$port > $dir$ip-p$port_SslRobotOracle.log 
+telnet,nmap -Pn --script=telnet-encryption -p$port $ip > $dir$ip-p$port_NmapTelnetEncryption.log 
+ntp,nmap -Pn -sU --script=ntp-monlist -p$port $ip > $dir$ip-p$port_NmapNtpMonlist.log 
+bfd,nmap -Pn --script=http-backup-finder.nse -p$port $ip > $dir$ip-p$port_NmapBackupFinder.log 
+nfs,nmap -Pn -sU --script=nfs-showmount -p$port $ip > $dir$ip-p$port_NmapNfsShowmount.log 
+ipdisclose,nmap -Pn -A --script=http-internal-ip-disclosure -p$port $ip > $dir$ip-p$port_NmapIpDisclose.log 
+vmwareversion,nmap -Pn -A --script=vmware-version.nse -p$port $ip > $dir$ip-p$port_NmapVmwareVer.log 
+x11,nmap -sU -Pn -A --script=x11-access.nse -p$port $ip > $dir$ip-p$port_NmapX11_udp.log 
+x11,nmap -Pn -A --script=x11-access.nse -p$port $ip > $dir$ip-p$port_NmapX11_tcp.log 
+xdmcp,nmap -Pn -A --script=xdmcp-discover.nse -p$port $ip > $dir$ip-p$port_NmapX11.log 
+ftp,nmap -Pn -A --script=ftp-bounce -p$port $ip > $dir$ip-p$port_NmapFTPbounce.log 
+jmxrmi,nmap -Pn -A --script=rmi-dumpregistry.nse -p$port $ip > $dir$ip-p$port_NmapJMXrmidump.log 
+servicecheck,nmap -Pn -A -p$port $ip > $dir$ip-p$port_NmapDEFAULT.log 
+mysqlaudit,nmap -Pn -A --script=mysql-audit -p$port $ip > $dir$ip-p$port_NmapMysqlAudit.log 
+mssqlinfo,nmap -Pn -A --script=ms-sql-info --script-args mssql.instance-port=$port -p$port $ip > $dir$ip-p$port_NmapMSSqlInfo.log 
+iiswebdav,nmap -Pn -A --script=mysql-audit -p$port $ip > $dir$ip-p$port_NmapMysqlAudit.log 
+vuln,nmap -Pn -sV --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN.log
+discovery,nmap -Pn -sV --script discovery -p$port $ip > $dir$ip-p$port_NmapDiscovery.log
+vulnudp, nmap -sU -Pn -sV --script vuln -p$port $ip > $dir$ip-p$port_NmapVULN_udp.log
