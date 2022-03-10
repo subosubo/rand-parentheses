@@ -1,0 +1,4 @@
+0,nmap -Pn --script=ssl-enum-ciphers -p3389 10.53.21.37 > C:\Users\admin\Documents\localscripts\nva-manualscan/VA/10.53.21.37-p3389_NmapSslEnumCiphers.log
+1,sslscan --no-colour --no-fallback --no-renegotiation --no-compression --no-heartbleed 10.53.21.37:3389 > C:\Users\admin\Documents\localscripts\nva-manualscan/VA/10.53.21.37-p3389_SslScan.log
+2,openssl s_client -connect 10.53.21.37:3389 > C:\Users\admin\Documents\localscripts\nva-manualscan/VA/10.53.21.37-p3389_OpenSslClient.log
+3,nmap -Pn --script=ssl-cert -p3389 10.53.21.37 > C:\Users\admin\Documents\localscripts\nva-manualscan/VA/10.53.21.37-p3389_NmapSslCert.log

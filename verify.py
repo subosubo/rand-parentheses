@@ -5,7 +5,7 @@ import queue
 import threading
 import time
 import sys
-from Queue import Queue
+from queue import Queue
 from subprocess import (Popen, PIPE)
 
 class myThread (threading.Thread):
