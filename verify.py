@@ -79,7 +79,7 @@ def construct():
 
     # Read for list of targeted services from "Services.csv"
     if services_file.readable():
-        serviceList = [line.rstrip() for line in services_file() if line[:1] != "#"]
+        serviceList = [line.rstrip() for line in services_file if line[:1] != "#"]
         services_file.close()
 
     # Prepare a list of executions that are to be executed.
