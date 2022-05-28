@@ -74,12 +74,12 @@ def construct():
     # Read for list of commands from "Commands.csv"
     # List are populated by ignoring commands starting with "#" and stripped of trailing whitespaces
     if commands_file.readable():
-        commandList = [line.rstrip() for line in commands_file if line[:1] != "#"]
+        commandList = [line.rstrip() for line in commands_file.readlines() if line[:1] != "#"]
         commands_file.close()
 
     # Read for list of targeted services from "Services.csv"
     if services_file.readable():
-        serviceList = [line.rstrip() for line in services_file if line[:1] != "#"]
+        serviceList = [line.rstrip() for line in services_file.readlines() if line[:1] != "#"]
         services_file.close()
 
     # Prepare a list of executions that are to be executed.
