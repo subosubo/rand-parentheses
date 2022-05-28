@@ -68,12 +68,19 @@ def construct():
         print("The input format is IP,Port,Service, example: 192.168.1.1,22,ssh\n")
         exit(1)
 
+    commands_file = open(commandsInputFile, "r")
+    services_file = open(servicesInputFile, "r")
+
     # Read for list of commands from "Commands.csv"
     # List are populated by ignoring commands starting with "#" and stripped of trailing whitespaces
-    commandList = [line.rstrip() for line in open(commandsInputFile) if line[:1] != "#"]
+    if commands_file.readable():
+        commandList = [line.rstrip() for line in commands_file if line[:1] != "#"]
+        commands_file.close()
 
     # Read for list of targeted services from "Services.csv"
-    serviceList = [line.rstrip() for line in open(servicesInputFile) if line[:1] != "#"]
+    if services_file.readable():
+        serviceList = [line.rstrip() for line in services_file() if line[:1] != "#"]
+        services_file.close()
 
     # Prepare a list of executions that are to be executed.
     executeList = []
