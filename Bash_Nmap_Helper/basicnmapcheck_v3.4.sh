@@ -28,6 +28,14 @@ OUTDIR="$(pwd)"
 ##To include exclude options for nmap
 ##To have options for enabling and disabling -n
 
+if [[ -z $1 ]];
+then 
+    printf "No parameter detected."
+    usage; exit 0;;
+else
+    continue
+fi
+
 #Menu
 while getopts "s:v:p:ah" opt; 
 do
