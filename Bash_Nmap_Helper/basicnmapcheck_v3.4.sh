@@ -31,9 +31,7 @@ OUTDIR="$(pwd)"
 if [[ -z $1 ]];
 then 
     printf "No parameter detected."
-    usage; exit 0;;
-else
-    continue
+    usage; exit 1;
 fi
 
 #Menu
