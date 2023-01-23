@@ -1,10 +1,10 @@
 # nva-manualscan
 
-**__1. basicnmapcheck_v3.4.sh__**
+**1. basicnmapcheck_v3.4.sh**
 
 This script automates the process of running Nmap scans on a list of IP addresses specified in a file called "targets.txt". The script accepts several command-line options, such as -p to specify the protocol (TCP or UDP), -s to specify the speed of the scan (ranging from sneaky to aggressive), and -v to specify the intensity of version guessing. It also creates a directory with the IP address name, and saves the output of the scan in this directory. The script also has options to include exclude options for nmap and options to enable and disabling -n.
 
-**checkcategories.sh**
+**2. checkcategories.sh**
 
 This script helps user to find the description of the nmap script or category of the script. 
 This script takes one to three arguments. The first argument is the name of the script or the category of the script. 
@@ -12,7 +12,7 @@ This script takes one to three arguments. The first argument is the name of the 
 - If the user provides three arguments, the script will search for the first category in the second category and in the third category of the script directory and prints the script names which belongs to the provided categories. 
 - If the user doesn't provide any argument or provides more than 3 arguments, it will print the categories of the nmap script and their descriptions.
 
-**Nessus-checker**
+**3. Nessus-checker**
 
 This script is a multi-threaded command execution tool that is written in Python. It reads in two CSV files, "Commands.csv" and "Services.csv", and uses the data from these files to create a list of commands to be executed.
 
@@ -24,7 +24,7 @@ The script also includes error handling for missing input files and other potent
 
 In summary, this script is a tool that reads in a list of commands and a list of target services from CSV files, constructs a list of commands to be executed, and then executes those commands in parallel using worker threads for faster execution.
 
-**update.sh**
+**4. update.sh**
 
 This script is a bash script that is designed to update and clean up a Linux system. It first checks if the user running the script has root privilege by checking the EUID variable. If the user does not have root privilege, the script exits.
 
