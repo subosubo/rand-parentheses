@@ -25,6 +25,7 @@ The script also includes error handling for missing input files and other potent
 In summary, this script is a tool that reads in a list of commands and a list of target services from CSV files, constructs a list of commands to be executed, and then executes those commands in parallel using worker threads for faster execution.
 
 **update.sh**
+
 This script is a bash script that is designed to update and clean up a Linux system. It first checks if the user running the script has root privilege by checking the EUID variable. If the user does not have root privilege, the script exits.
 
 If the user has root privilege, the script proceeds to run the following commands:
