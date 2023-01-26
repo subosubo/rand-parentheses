@@ -10,3 +10,5 @@ apt-get -y --with-new-pkgs upgrade
 apt -y autoremove
 apt clean
 apt purge -y $(dpkg -l| awk '/^rc/ {print $2}')
+#update all git child projects in /opt
+sudo find /opt -mindepth 1 -maxdepth 1 -type d -exec sh -c 'cd "{}"; git pull' \;
