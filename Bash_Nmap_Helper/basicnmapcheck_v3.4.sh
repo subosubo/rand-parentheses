@@ -16,7 +16,7 @@ function usage {
 }
 
 function pingtest {
-	sudo nmap -sn -n -oN ${OUTDIR}/pingtest.txt -iL ${OUTDIR}/targets.txt
+	nmap -sn -n -oN ${OUTDIR}/pingtest.txt -iL ${OUTDIR}/targets.txt
 }
 
 #Default Options
@@ -86,26 +86,26 @@ do
     printf "Scanning Open Ports for "$ip"\n" 
 	
     if [[ $protocol == "tcp" || $protocol == "all" ]]; then
-        ports=$(sudo nmap -n -Pn -p- $speed "$ip" | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
+        ports=$(nmap -n -Pn -p- $speed "$ip" | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
 		
         if [[ ! -z $ports ]]; then
             echo -e "TCP ports for nmap to scan: $ports"
             echo -e "nmap ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip} -p ${ports} ${ip}"
             sleep 1
-            sudo nmap ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip} -p ${ports} ${ip}
+            nmap ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip} -p ${ports} ${ip}
         else
             printf "[!] No TCP ports found for "$ip"\n"
         fi
     fi
 
     if [[ $protocol == "udp" || $protocol == "all" ]]; then
-        ports=$(sudo nmap -sU -n -Pn -p- $speed "$ip" | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
+        ports=$(nmap -sU -n -Pn -p- $speed "$ip" | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
 		
         if [[ ! -z $ports ]]; then
             echo -e "UDP ports for nmap to scan: $ports"
             echo -e "nmap -sU ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip} -p ${ports} ${ip}"
             sleep 1
-            sudo nmap -sU ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip}U -p ${ports} ${ip}
+            nmap -sU ${nmap_opt} -oA ${OUTDIR}/${ip}/${ip}U -p ${ports} ${ip}
         else
             printf "[!] No UDP ports found for "$ip"\n"
         fi
